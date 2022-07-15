@@ -67,7 +67,7 @@ const showUsersTable = () => {
                             <td>${user.email}</td>
                             <td>${user.login}</td>
                             <td>${user.roles.map(r => r.userRole)}</td>
-                            <td><button type="submit" class="btnEdit btn btn-success" 
+                            <td><button type="submit" class="btnEdit btn btn-primary" 
                                 data-bs-toggle="modal" data-bs-target="#editModal">Edit</button></td>
                             <td class="text-center"><button type="submit" class="btnDel btn btn-danger" 
                                 data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button></td>
@@ -148,7 +148,7 @@ editModal.addEventListener('submit', (e) => {
             surname: editSurname.value,
             age: editAge.value,
             email: editEmail.value,
-            login: login.value,
+            login: editLogin.value,
             password: editPassword.value,
             roles: setRoles
         })

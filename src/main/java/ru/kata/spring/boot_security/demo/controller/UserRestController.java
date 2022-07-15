@@ -3,12 +3,9 @@ package ru.kata.spring.boot_security.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.kata.spring.boot_security.demo.exception_handling.NoSuchUserException;
-import ru.kata.spring.boot_security.demo.exception_handling.UserIncorrectData;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
@@ -30,17 +27,4 @@ public class UserRestController {
         return new ResponseEntity<>(userService.getUserByLogin(principal.getName()), HttpStatus.OK);
     }
 
-    @ExceptionHandler
-    public ResponseEntity<UserIncorrectData> handleException (NoSuchUserException exception) {
-        UserIncorrectData data = new UserIncorrectData();
-        data.setInfo(exception.getMessage());
-        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<UserIncorrectData>handleException (Exception exception) {
-        UserIncorrectData data = new UserIncorrectData();
-        data.setInfo(exception.getMessage());
-        return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
-    }
 }
